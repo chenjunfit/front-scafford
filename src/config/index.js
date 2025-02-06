@@ -3,4 +3,5 @@ export const API_CONFIG={
 }
 export const TOKEN_CONFIG={
     "TOKEN_NAME":"Authorization"
+
 }
