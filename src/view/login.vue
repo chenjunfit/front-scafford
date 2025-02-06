@@ -31,6 +31,7 @@ import { User,Lock} from '@element-plus/icons-vue'
 import { ElMessage } from 'element-plus'
 import {login} from '../api/login.js'
 import {TOKEN_CONFIG} from "../config/index.js";
+import router from "../routers/index.js"
 import request from '../api/index.js'
 const loginRef = ref()
 
@@ -61,6 +62,7 @@ const submitForm=()=>{
                 message: '登录成功',
                 type: 'success',
             })
+            router.replace('/index')
             const token=response.data.data.token
             window.localStorage.setItem(TOKEN_CONFIG.TOKEN_NAME,token)
         }

@@ -79,6 +79,7 @@ axios.interceptors.response.use(function (response) {
         }
 
     }
+    return response
 
 },function (error){
     //请求失败做什么
