@@ -1,6 +1,7 @@
 import axios from "axios";
 import {TOKEN_CONFIG} from "../config/index.js";
-
+import { ElMessage } from 'element-plus'
+import router from '../routers/index.js'
 const request=(url="",method="get",data={},timeout=5000)=>{
     return new Promise((resolve, reject) =>{
         const methodLower=method.toLowerCase()
@@ -62,5 +63,28 @@ axios.interceptors.request.use(function (config) {
 
 },function (error){
     //请求失败做什么
+    return Promise.reject(error)
+})
+axios.interceptors.response.use(function (response) {
+    if(response.data.status==200){
+        return Promise.resolve(response)
+    }else if(response.data.status==401){
+        ElMessage({
+            message: '用户或者密码错误',
+            type: 'warning',
+        })
+        window.localStorage.removeItem(TOKEN_CONFIG.TOKEN_NAME)
+        if(router.currentRoute.value.path!='/login'){
+            router.replace("/login")
+        }
+
+    }
+
+},function (error){
+    //请求失败做什么
+    ElMessage({
+        message: error.message,
+        type: 'error',
+    })
     return Promise.reject(error)
 })
