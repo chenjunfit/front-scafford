@@ -8,7 +8,7 @@ const request=(url="",method="get",data={},timeout=5000)=>{
                 url: url,
                 method:method,
                 params: data,
-                timeout: timeout
+                timeout: timeout,
             }).then((response)=>{
                 resolve(response)
             }).catch((error)=>{
@@ -19,7 +19,7 @@ const request=(url="",method="get",data={},timeout=5000)=>{
                 url: url,
                 method:method,
                 data: data,
-                timeout: timeout
+                timeout: timeout,
             }).then((response)=>{
                 resolve(response)
             }).catch((error)=>{

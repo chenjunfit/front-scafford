@@ -18,7 +18,7 @@
                 <el-input :prefix-icon="Lock" placeholder="请输入密码" show-password v-model="loginInfo.password" type="password" autocomplete="off" />
             </el-form-item>
             <el-form-item>
-                <el-button :disabled="loginDisabled" type="primary" @click="submitForm(ruleFormRef)">
+                <el-button :disabled="loginDisabled" type="primary" @click="submitForm">
                     登录
                 </el-button>
             </el-form-item>
@@ -28,6 +28,10 @@
 <script setup>
 import {reactive, ref,watch} from "vue";
 import { User,Lock} from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
+import {login} from '../api/login.js'
+import {TOKEN_CONFIG} from "../config/index.js";
+import request from '../api/index.js'
 const loginRef = ref()
 
 const loginInfo =reactive({
@@ -50,6 +54,18 @@ watch([()=>loginInfo.username,()=>loginInfo.password],()=>{
         }
     })
 })
+const submitForm=()=>{
+    login(loginInfo.username,loginInfo.password).then((response)=>{
+        if(response.data.code==200){
+            ElMessage({
+                message: '登录成功',
+                type: 'success',
+            })
+            const token=response.data.data.token
+            window.localStorage.setItem(TOKEN_CONFIG.TOKEN_NAME,token)
+        }
+    })
+}
 </script>
 
 <style scoped>
