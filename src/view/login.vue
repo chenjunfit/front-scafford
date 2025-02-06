@@ -3,22 +3,18 @@
         <h2>后台管理系统</h2>
         <el-form
             ref="loginRef"
-            style="max-width: 600px"
             :model="loginInfo"
-            status-icon
             :rules="rules"
-            label-width="auto"
-            class="demo-ruleForm"
 
         >
-            <el-form-item  prop="username">
+            <el-form-item  prop="username"  class="form-item">
                 <el-input :prefix-icon="User" clearable placeholder="请输入用户名" v-model="loginInfo.username" />
             </el-form-item>
-            <el-form-item prop="password">
-                <el-input :prefix-icon="Lock" placeholder="请输入密码" show-password v-model="loginInfo.password" type="password" autocomplete="off" />
+            <el-form-item prop="password" class="form-item">
+                <el-input :prefix-icon="Lock" placeholder="请输入密码" show-password v-model="loginInfo.password" type="password" autocomplete="off"/>
             </el-form-item>
-            <el-form-item>
-                <el-button :disabled="loginDisabled" type="primary" @click="submitForm">
+            <el-form-item >
+                <el-button style="margin: 0 auto" :disabled="loginDisabled" type="primary" @click="submitForm" >
                     登录
                 </el-button>
             </el-form-item>
@@ -71,5 +67,8 @@ const submitForm=()=>{
 </script>
 
 <style scoped>
-
+.form-item{
+    width: 240px;
+    margin: 0 auto 15px auto
+}
 </style>
