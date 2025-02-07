@@ -3,10 +3,11 @@ import {createRouter, createWebHashHistory} from "vue-router";
 import {TOKEN_CONFIG} from "../config/index.js";
 
 const Login =()=> import ('../view/login.vue')
-const Index =()=> import ('../view/index.vue')
-
+const Layout =()=> import ('../view/layout/layout.vue')
+import userRouter from "./user/user.js"
 //定义路由映射
 const routers=[
+    userRouter,
     {
         path: '/login',
         component: Login,
@@ -14,9 +15,9 @@ const routers=[
     },
     {
         path: '/index',
-        component: Index,
-        name: "index"
+        component: Layout,
     },
+
 ]
 //创建路由实例
 const router=createRouter({
@@ -36,6 +37,7 @@ router.beforeEach(
         }else if(path.indexOf("/login")==0&&tokenValue){
             next('/index')
         }else if(path.indexOf("/login")!=0&&!tokenValue){
+            console.log("路由: ",path,tokenValue)
             next('/login')
         }else{
             next()

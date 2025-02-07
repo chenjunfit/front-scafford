@@ -1,5 +1,5 @@
 <template>
-<div>首页</div>
+    <div>查看用户列表</div>
 </template>
 
 <script setup>

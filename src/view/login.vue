@@ -1,11 +1,10 @@
 <template>
-    <el-card style="width: 480px">
+    <el-card style="width: 480px;margin: 0 auto">
         <h2>后台管理系统</h2>
         <el-form
             ref="loginRef"
             :model="loginInfo"
             :rules="rules"
-
         >
             <el-form-item  prop="username"  class="form-item">
                 <el-input :prefix-icon="User" clearable placeholder="请输入用户名" v-model="loginInfo.username" />
