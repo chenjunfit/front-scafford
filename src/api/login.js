@@ -11,3 +11,9 @@ export const login=(username,password)=>{
         2000
     )
 }
+export const logout=()=>{
+    return request(API_CONFIG.loginOutApi,'post',
+        {},
+        2000
+    )
+}

@@ -5,7 +5,7 @@
             <el-container class="el-container_el-container">
                 <Header></Header>
                 <Main></Main>
-                <Footer></Footer>
+<!--                <Footer></Footer>-->
             </el-container>
         </el-container>
     </div>

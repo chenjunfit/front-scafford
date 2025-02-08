@@ -5,7 +5,6 @@ export const MEMU_CONFIG=[
         "icon":"iconfont icon-yonghu",
         items:
             [
-                {"title":"添加用户", "index":"/user/add"},
                 {"title":"查看用户", "index":"/user/list"},
             ]
 

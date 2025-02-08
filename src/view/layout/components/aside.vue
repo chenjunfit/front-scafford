@@ -1,10 +1,10 @@
 <template>
-    <el-aside width="240px" style="border-right: 1px solid #cccccc;">
+    <el-aside :style="{width:isCollapse?'64px':'240px'}" width="64px" style="border-right: 1px solid #cccccc;" class="el-aside">
         <div class="el-button">
             <router-link to="/index">
                 <el-button text class="el-button_el-button" style="font-size: 25px">
-                    <el-icon :size="24" style="margin-right: 10px"><MoonNight /></el-icon>
-                    Admin
+                    <el-icon :size="24" style="margin-right: 10px;padding-left: 15px"><MoonNight /></el-icon>
+                    <span v-show="!isCollapse">Admin</span>
                 </el-button>
             </router-link>
 
@@ -13,6 +13,8 @@
                 :default-active="$route.path"
                 class="el-menu-vertical-demo"
                 router
+                :collapse="isCollapse"
+                :collapse-transition="false"
             >
                 <el-sub-menu v-for="item in MEMU_CONFIG" :key="item.index" :index="item.index">
                     <template #title>
@@ -51,6 +53,10 @@
 import {MoonNight,Menu as IconMenu,Setting,Location} from '@element-plus/icons-vue'
 import {MEMU_CONFIG} from "../../../config/menu.js";
 import '../../../assets/iconfont/iconfont.css'
+import {ref} from "vue";
+import {storeToRefs} from "pinia";
+import {useIsCollapse} from "../../../store/index.js";
+const {isCollapse}=storeToRefs(useIsCollapse())
 
 </script>
 
@@ -62,5 +68,15 @@ height: 50px;
 .el-button_el-button{
     width: 100%;
     height: 100%;
+}
+.el-aside{
+    transition: width 0.15s !important;
+    -webkit-transition: width 0.15s !important;
+    -moz-transition: width 0.15s !important;
+    -webkit-transition: width 0.15s !important;
+    -o-transition: width 0.15s !important;
+}
+.el-menu {
+    transition: all 10ms;
 }
 </style>
